@@ -7,6 +7,7 @@
     android:padding="10sp">
 
     <TextView
+        android:layout_gravity="center"
         android:id="@+id/item_pokemon__textViewId"
         android:layout_width="70sp"
         android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
+        android:layout_gravity="center"
         android:id="@+id/item_pokemon__textViewName"
         android:layout_width="150sp"
         android:layout_height="wrap_content"
