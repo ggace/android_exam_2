@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.collection.CircularArray;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sbs.myapplication.Pokemon;
@@ -118,6 +119,7 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
+
         public TextView textViewId;
         public TextView textViewName;
         public ImageView imageViewPokemon;
@@ -136,13 +138,14 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
                 Pokemon pokemon = data.get((int)view1.getTag());
 
                 intent.putExtra("pokemon", Util.objToJsonString(pokemon));
+                intent.putExtra("index", (int)view1.getTag());
 
                 view1.getContext().startActivity(intent);
             });
         }
     }
 
-    public class HeaderViewHolder extends RecyclerView.ViewHolder {
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(@NonNull View view) {
             super(view);
         }

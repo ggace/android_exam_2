@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.DetailActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/activity_detail">
 
     <TextView
         android:layout_width="match_parent"
@@ -37,6 +38,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/activity_detail__item__recyclerView" ></androidx.recyclerview.widget.RecyclerView>
+
 
 
 </LinearLayout>

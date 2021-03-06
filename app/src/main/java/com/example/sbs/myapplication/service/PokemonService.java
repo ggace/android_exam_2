@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 
 import com.example.sbs.myapplication.BuildConfig;
 import com.example.sbs.myapplication.api.PokeApi;
+import com.example.sbs.myapplication.api.PokeApi__getAbilities__ResponseBody;
 import com.example.sbs.myapplication.api.PokeApi__getPokemons__ResponseBody;
 import com.example.sbs.myapplication.util.Util;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -18,6 +22,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class PokemonService {
     private PokeApi pokeApi;
+    private Consumer<? super PokeApi__getPokemons__ResponseBody> onNext;
 
     public PokemonService() {
         // Retrofit 빌더 객체 생성
@@ -25,10 +30,10 @@ public class PokemonService {
 
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 
-        if (BuildConfig.DEBUG) {
-            // Stetho Interceptor 추가해야 Chrome Inspect tool 에서 확인 가능, 필수 아님
-            okHttpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
-        }
+
+        // Stetho Interceptor 추가해야 Chrome Inspect tool 에서 확인 가능, 필수 아님
+        okHttpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
+
 
         okHttpClient = okHttpClientBuilder.build();
 
@@ -53,5 +58,21 @@ public class PokemonService {
                 .subscribe(onNext, throwable -> {
                     Util.log("throwable : " + throwable.getMessage());
                 });
+    }
+
+    public void getAbilities(String url, @NonNull Consumer<? super PokeApi__getAbilities__ResponseBody> onNext){
+
+
+
+        Util.log(url);
+        pokeApi.getAbilities(url)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onNext, throwable -> {
+                    Util.log(throwable.getMessage());
+                });
+
+
+
     }
 }
