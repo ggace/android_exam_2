@@ -1,5 +1,7 @@
 package com.example.sbs.myapplication.ui;
 
+import android.app.Application;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +27,11 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     private List<Pokemon> data;
     private View.OnClickListener onClickLoadMore;
 
+
+
     public RecyclerViewPokemonAdapter() {
         this.data = new ArrayList<>();
+
     }
 
     @Override
@@ -79,6 +84,8 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
             itemViewHolder.textViewName.setText(pokemon.getName());
             itemViewHolder.textViewName.setTag(pokemonIndex);
 
+
+
             Util.loadImageOn(pokemon.getImgUrl(), itemViewHolder.imageViewPokemon);
         }
     }
@@ -121,6 +128,17 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
             textViewId = view.findViewById(R.id.item_pokemon__textViewId);
             textViewName = view.findViewById(R.id.item_pokemon__textViewName);
             imageViewPokemon = view.findViewById(R.id.item_pokemon__imageViewPokemon);
+
+            textViewName.setOnClickListener(view1 -> {
+                Intent intent = new Intent(view1.getContext(), DetailActivity.class);
+
+
+                Pokemon pokemon = data.get((int)view1.getTag());
+
+                intent.putExtra("pokemon", Util.objToJsonString(pokemon));
+
+                view1.getContext().startActivity(intent);
+            });
         }
     }
 
@@ -137,6 +155,10 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
             super(view);
             buttonLoadMore = view.findViewById(R.id.item_pokemon_footer__buttonLoadMore);
             buttonLoadMore.setOnClickListener(onClickLoadMore);
+
+
+
+
         }
     }
 }

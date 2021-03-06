@@ -68,6 +68,19 @@ public class Util {
         Log.d("AA1", msg);
     }
 
+    public static <T> T jsonStringToObj(String jsonString, Class cls){
+        ObjectMapper om = new ObjectMapper();
+
+        try {
+            return (T)om.readValue(jsonString, cls);
+        } catch (JsonProcessingException e) {
+            Util.log("\n");
+            Util.log(e.getMessage());
+            Util.log("\n");
+            return null;
+        }
+    }
+
     public static String objToJsonString(Object obj) {
         ObjectMapper om = new ObjectMapper();
 
@@ -81,13 +94,7 @@ public class Util {
     public static <T> T spGetObj(String key, Class<T> cls) {
         String jsonString = spGetString(key, "");
 
-        ObjectMapper om = new ObjectMapper();
-
-        try {
-            return (T) om.readValue(jsonString, cls);
-        } catch (JsonProcessingException e) {
-            return null;
-        }
+        return jsonStringToObj(jsonString, cls);
     }
 
     public static <T> T spGetObj(String key, TypeReference<T> cls) {

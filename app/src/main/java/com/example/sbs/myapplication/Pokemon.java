@@ -1,5 +1,7 @@
 package com.example.sbs.myapplication;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,17 +13,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pokemon {
-    private int id;
     private String name;
+    private String url;
 
-    public String getImgUrl() {
-        return "https://pokeres.bastionbot.org/images/pokemon/" + id + ".png";
-    }
 
-    @JsonCreator
-    public Pokemon(@JsonProperty("name") String name, @JsonProperty("url") String url) {
-        this.name = name;
+    public int getId(){
         String[] urlBits = url.split("/");
-        this.id = Integer.parseInt(urlBits[urlBits.length - 1]);
+
+        return Integer.parseInt(urlBits[urlBits.length - 1]);
     }
+
+    public String getImgUrl(){
+        return "https://pokeres.bastionbot.org/images/pokemon/" + getId() + ".png";
+    }
+
+    public Pokemon(@JsonProperty("name") String name, @JsonProperty("url") String url, @JsonProperty("id")int id, @JsonProperty("imgUrl") String imgUrl){
+
+        this.name = name;
+        this.url = url;
+    }
+
+
 }
