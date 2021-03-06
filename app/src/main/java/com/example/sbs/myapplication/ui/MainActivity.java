@@ -69,12 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadMore(){
-        pokemonService.getPokemons(recyclerViewPokemonAdapter.getDataSize(), recyclerViewPokemonAdapter.getLoadCount(), responseBody -> {
-            recyclerViewPokemonAdapter.addPokemons(responseBody.getResults());
-
-
-
-        });
+        loadMore(null);
     }
 
     public void loadMore(View view){
