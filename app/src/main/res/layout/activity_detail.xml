@@ -42,7 +42,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-
+                app:imgUrl="@{imgUrl}"
                 android:id="@+id/activity_detail__imageViewPokemon"
                 android:layout_width="0sp"
                 android:layout_height="0sp"

@@ -54,7 +54,7 @@ public class DetailActivity extends AppCompatActivity {
             setTitle("포켓몬 " + pokemon.getId()+ "번 상세 정보");
             binding.setId(pokemon.getId());
             binding.setName(pokemon.getName());
-            Util.loadImageOn(pokemon.getImgUrl(), binding.activityDetailImageViewPokemon);
+            binding.setImgUrl(pokemon.getImgUrl());
         }
 
         final PokemonService pokemonService = new PokemonService();
