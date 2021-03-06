@@ -43,14 +43,17 @@ public class DetailActivity extends AppCompatActivity {
 
         Pokemon pokemon = Util.jsonStringToObj(pokemon_json, Pokemon.class);
 
+
+
+
         if(pokemon == null){
             setTitle("포켓몬 상세 정보");
 
         }
         else{
             setTitle("포켓몬 " + pokemon.getId()+ "번 상세 정보");
-            binding.activityDetailPokemonId.setText("번호 : " + pokemon.getId() + "");
-            binding.activityDetailPokemonName.setText("이름 : " + pokemon.getName());
+            binding.setId(pokemon.getId());
+            binding.setName(pokemon.getName());
             Util.loadImageOn(pokemon.getImgUrl(), binding.activityDetailImageViewPokemon);
         }
 

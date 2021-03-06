@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="id"
+            type="int" />
+        <variable
+            name="name"
+            type="String" />
+        <variable
+            name="imgUrl"
+            type="String" />
+    </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,24 +24,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="아이디"
+            android:text="@{`번호 : ` + id}"
             android:textSize="25sp"
             android:padding="5sp"
-            android:id="@+id/activity_detail__pokemon_id" />
+            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="이름"
+            android:text="@{`이름 : ` + name}"
             android:textSize="25sp"
             android:padding="5sp"
-            android:id="@+id/activity_detail__pokemon_name" />
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
+
                 android:id="@+id/activity_detail__imageViewPokemon"
                 android:layout_width="0sp"
                 android:layout_height="0sp"
