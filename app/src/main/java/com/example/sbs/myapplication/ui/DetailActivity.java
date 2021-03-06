@@ -52,9 +52,7 @@ public class DetailActivity extends AppCompatActivity {
         }
         else{
             setTitle("포켓몬 " + pokemon.getId()+ "번 상세 정보");
-            binding.setId(pokemon.getId());
-            binding.setName(pokemon.getName());
-            binding.setImgUrl(pokemon.getImgUrl());
+            binding.setPokemon(pokemon);
         }
 
         final PokemonService pokemonService = new PokemonService();

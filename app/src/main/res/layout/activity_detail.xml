@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <import type="com.example.sbs.myapplication.Pokemon" />
         <variable
-            name="id"
-            type="int" />
-        <variable
-            name="name"
-            type="String" />
-        <variable
-            name="imgUrl"
-            type="String" />
+            name="pokemon"
+            type="Pokemon" />
+
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{`번호 : ` + id}"
+            android:text="@{`번호 : ` + pokemon.id}"
             android:textSize="25sp"
             android:padding="5sp"
             />
@@ -32,7 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{`이름 : ` + name}"
+            android:text="@{`이름 : ` + pokemon.name}"
             android:textSize="25sp"
             android:padding="5sp"
             />
@@ -42,7 +38,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                app:imgUrl="@{imgUrl}"
+                app:imgUrl="@{pokemon.imgUrl}"
                 android:id="@+id/activity_detail__imageViewPokemon"
                 android:layout_width="0sp"
                 android:layout_height="0sp"
