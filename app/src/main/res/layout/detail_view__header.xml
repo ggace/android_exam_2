@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="능력"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:id="@+id/detail_view__header" />
 
 </LinearLayout>

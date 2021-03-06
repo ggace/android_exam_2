@@ -27,8 +27,13 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private List<Pokemon> data;
     private View.OnClickListener onClickLoadMore;
+    private View.OnClickListener onMoveActivity;
 
 
+    public RecyclerViewPokemonAdapter(List<Pokemon> data) {
+        this.data = data;
+
+    }
 
     public RecyclerViewPokemonAdapter() {
         this.data = new ArrayList<>();
@@ -48,6 +53,7 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         if (viewType == TYPE_HEADER) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_pokemon_header, parent, false);
@@ -118,6 +124,10 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
         return data.size();
     }
 
+    public void setOnMoveActivity(View.OnClickListener onMoveActivity) {
+        this.onMoveActivity = onMoveActivity;
+    }
+
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textViewId;
@@ -131,17 +141,9 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
             textViewName = view.findViewById(R.id.item_pokemon__textViewName);
             imageViewPokemon = view.findViewById(R.id.item_pokemon__imageViewPokemon);
 
-            textViewName.setOnClickListener(view1 -> {
-                Intent intent = new Intent(view1.getContext(), DetailActivity.class);
-
-
-                Pokemon pokemon = data.get((int)view1.getTag());
-
-                intent.putExtra("pokemon", Util.objToJsonString(pokemon));
-                intent.putExtra("index", (int)view1.getTag());
-
-                view1.getContext().startActivity(intent);
-            });
+            textViewName.setOnClickListener(onMoveActivity);
+            textViewId.setOnClickListener(onMoveActivity);
+            imageViewPokemon.setOnClickListener(onMoveActivity);
         }
     }
 

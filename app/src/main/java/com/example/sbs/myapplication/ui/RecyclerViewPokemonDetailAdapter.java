@@ -3,13 +3,12 @@ package com.example.sbs.myapplication.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sbs.myapplication.Pokemon;
+
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.util.Util;
 
@@ -25,7 +24,7 @@ public class RecyclerViewPokemonDetailAdapter extends RecyclerView.Adapter<Recyc
 
     public RecyclerViewPokemonDetailAdapter(List<String> data){
         this.data = data;
-        Util.log("hi");
+
     }
 
     public RecyclerViewPokemonDetailAdapter() {
@@ -43,45 +42,53 @@ public class RecyclerViewPokemonDetailAdapter extends RecyclerView.Adapter<Recyc
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Util.log("실행됨");
         if (viewType == HEADER) {
             Util.log("header");
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_pokemon_header, parent, false);
+                    .inflate(R.layout.detail_view__header, parent, false);
 
-            return new RecyclerViewPokemonDetailAdapter.HeaderViewHolder(view);
+            return new HeaderViewHolder(view);
         }
         else {
             Util.log("item");
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_pokemon, parent, false);
+                    .inflate(R.layout.detail_view__item, parent, false);
 
-            return new RecyclerViewPokemonDetailAdapter.ItemViewHolder(view);
+            return new ItemViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof HeaderViewHolder) {}
+
+        Util.log(position + "");
+        if (position == 0) {}
         else {
-            RecyclerViewPokemonDetailAdapter.ItemViewHolder itemViewHolder = (RecyclerViewPokemonDetailAdapter.ItemViewHolder) holder;
+            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
 
             int pokemonIndex = position - 1;
 
             String name = data.get(pokemonIndex);
-            itemViewHolder.item.setText(name);
+            itemViewHolder.item.setText(" - " + name);
         }
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return data.size() + 1;
     }
 
     public void addAbility(String name) {
+
+        Util.log("add");
+
+        data.add(name);
+
+        notifyDataSetChanged();
     }
 
-
-    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    public class HeaderViewHolder extends RecyclerView.ViewHolder {
         TextView header;
 
 
