@@ -39,21 +39,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
         String pokemon_json = getIntent().getStringExtra("pokemon");
-
-
-
-
 
         Pokemon pokemon = Util.jsonStringToObj(pokemon_json, Pokemon.class);
 

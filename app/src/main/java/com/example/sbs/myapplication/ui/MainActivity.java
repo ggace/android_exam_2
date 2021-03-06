@@ -18,6 +18,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Pokemon> data;
+    PokemonService pokemonService;
+
+    RecyclerViewPokemonAdapter recyclerViewPokemonAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 포켓몬 서비스
-        final PokemonService pokemonService = new PokemonService();
+        pokemonService = new PokemonService();
 
         // 포켓몬 리사이클러 뷰
         final RecyclerView recyclerViewPokemon = findViewById(R.id.activity_main__recyclerViewPokemon);
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         data = new ArrayList<>();
 
-        final RecyclerViewPokemonAdapter recyclerViewPokemonAdapter = new RecyclerViewPokemonAdapter(data);
+        recyclerViewPokemonAdapter = new RecyclerViewPokemonAdapter(data);
 
         View.OnClickListener onMoveActivity = view1 -> {
             Intent intent = new Intent(view1.getContext(), DetailActivity.class);
@@ -50,18 +53,36 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewPokemonAdapter.setOnMoveActivity(onMoveActivity);
 
+        loadMore();
+
         // 푸터의 `더 보기` 버튼을 클릭하면 일어날 일을 세팅
         recyclerViewPokemonAdapter.setOnClickLoadMore(view -> {
             view.setEnabled(false);
 
-            pokemonService.getPokemons(recyclerViewPokemonAdapter.getDataSize(), recyclerViewPokemonAdapter.getLoadCount(), responseBody -> {
-                recyclerViewPokemonAdapter.addPokemons(responseBody.getResults());
-                view.setEnabled(true);
-            });
+            loadMore(view);
+
         });
 
         recyclerViewPokemon.setAdapter(recyclerViewPokemonAdapter);
 
 
+    }
+
+    public void loadMore(){
+        pokemonService.getPokemons(recyclerViewPokemonAdapter.getDataSize(), recyclerViewPokemonAdapter.getLoadCount(), responseBody -> {
+            recyclerViewPokemonAdapter.addPokemons(responseBody.getResults());
+
+
+
+        });
+    }
+
+    public void loadMore(View view){
+        pokemonService.getPokemons(recyclerViewPokemonAdapter.getDataSize(), recyclerViewPokemonAdapter.getLoadCount(), responseBody -> {
+            recyclerViewPokemonAdapter.addPokemons(responseBody.getResults());
+            view.setEnabled(true);
+
+
+        });
     }
 }

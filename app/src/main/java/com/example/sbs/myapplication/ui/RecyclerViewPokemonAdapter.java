@@ -28,6 +28,7 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     private List<Pokemon> data;
     private View.OnClickListener onClickLoadMore;
     private View.OnClickListener onMoveActivity;
+    private int laodMore = 20;
 
 
     public RecyclerViewPokemonAdapter(List<Pokemon> data) {
@@ -117,7 +118,7 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     public int getLoadCount() {
-        return 20;
+        return laodMore;
     }
 
     public int getDataSize() {
