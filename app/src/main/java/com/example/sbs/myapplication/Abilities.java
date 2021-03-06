@@ -13,4 +13,5 @@ public class Abilities {
     Ability ability;
     Boolean is_hidden;
     int slot;
+
 }

@@ -52,13 +52,14 @@ public class DetailActivity extends AppCompatActivity {
         String pokemon_json = getIntent().getStringExtra("pokemon");
 
 
-        Util.log(pokemon_json);
+
+
 
         Pokemon pokemon = Util.jsonStringToObj(pokemon_json, Pokemon.class);
 
         if(pokemon == null){
             setTitle("포켓몬 상세 정보");
-            Util.log("none");
+
         }
         else{
             setTitle("포켓몬 " + pokemon.getId()+ "번 상세 정보");
@@ -80,6 +81,14 @@ public class DetailActivity extends AppCompatActivity {
                 List<Abilities> abilitiesList = pokeApi__getAbilities__responseBody.getAbilities();
                 for(Abilities abilities : abilitiesList){
                     recyclerViewPokemonDetailAdapter.addAbility(abilities.getAbility().getName());
+/*
+                    if(!abilities.getIs_hidden()){
+
+                    }
+
+*/
+
+
 
 
                 }

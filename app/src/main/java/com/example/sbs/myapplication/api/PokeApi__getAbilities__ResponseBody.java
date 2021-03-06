@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIncludeProperties("abilities")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PokeApi__getAbilities__ResponseBody {
     List<Abilities> abilities;
 

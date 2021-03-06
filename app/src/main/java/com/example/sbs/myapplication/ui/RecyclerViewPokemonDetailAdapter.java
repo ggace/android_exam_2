@@ -42,16 +42,16 @@ public class RecyclerViewPokemonDetailAdapter extends RecyclerView.Adapter<Recyc
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Util.log("실행됨");
+
         if (viewType == HEADER) {
-            Util.log("header");
+
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.detail_view__header, parent, false);
 
             return new HeaderViewHolder(view);
         }
         else {
-            Util.log("item");
+
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.detail_view__item, parent, false);
 
@@ -62,7 +62,7 @@ public class RecyclerViewPokemonDetailAdapter extends RecyclerView.Adapter<Recyc
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Util.log(position + "");
+
         if (position == 0) {}
         else {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
@@ -81,7 +81,7 @@ public class RecyclerViewPokemonDetailAdapter extends RecyclerView.Adapter<Recyc
 
     public void addAbility(String name) {
 
-        Util.log("add");
+
 
         data.add(name);
 
