@@ -1,7 +1,8 @@
 package com.example.sbs.myapplication.api;
 
-import com.example.sbs.myapplication.Abilities;
-import com.example.sbs.myapplication.Ability;
+import com.example.sbs.myapplication.dto.Abilities;
+import com.example.sbs.myapplication.dto.Ability;
+import com.example.sbs.myapplication.dto.Pokemon;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
@@ -15,11 +16,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIncludeProperties("abilities")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PokeApi__getAbilities__ResponseBody {
     List<Abilities> abilities;
-
 
 
 }

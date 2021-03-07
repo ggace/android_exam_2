@@ -7,7 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sbs.myapplication.Pokemon;
+import com.example.sbs.myapplication.databinding.ActivityMainBinding;
+import com.example.sbs.myapplication.dto.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.service.PokemonService;
 import com.example.sbs.myapplication.util.Util;
@@ -26,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("포켓몬 리스트");
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding.setLifecycleOwner(this);
         setContentView(R.layout.activity_main);
+
+        MainViewModel vm = new MainViewModel();
 
         // 포켓몬 서비스
         pokemonService = new PokemonService();
@@ -45,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
             Pokemon pokemon = data.get((int)view1.getTag());
 
-            intent.putExtra("pokemon", Util.objToJsonString(pokemon));
-            intent.putExtra("index", (int)view1.getTag());
+            intent.putExtra("name", pokemon.getName());
+            intent.putExtra("url", pokemon.getUrl());
+
 
             view1.getContext().startActivity(intent);
         };

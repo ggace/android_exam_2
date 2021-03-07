@@ -60,12 +60,12 @@ public class PokemonService {
                 });
     }
 
-    public void getAbilities(String url, @NonNull Consumer<? super PokeApi__getAbilities__ResponseBody> onNext){
+    public void getAbilities(int id, @NonNull Consumer<? super PokeApi__getAbilities__ResponseBody> onNext){
 
 
 
-        Util.log(url);
-        pokeApi.getAbilities(url)
+
+        pokeApi.getAbilities(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onNext, throwable -> {

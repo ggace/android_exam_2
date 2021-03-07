@@ -12,6 +12,6 @@ public interface PokeApi {
     @GET("pokemon")
     Observable<PokeApi__getPokemons__ResponseBody> getPokemons(@Query("offset") int offset, @Query("limit") int limit);
 
-    @GET
-    Observable<PokeApi__getAbilities__ResponseBody> getAbilities(@Url String url);
+    @GET("pokemon/{id}")
+    Observable<PokeApi__getAbilities__ResponseBody> getAbilities(@Path("id") int id);
 }

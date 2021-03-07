@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.collection.CircularArray;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sbs.myapplication.Pokemon;
+import com.example.sbs.myapplication.dto.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.util.Util;
 
@@ -29,6 +29,8 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     private View.OnClickListener onClickLoadMore;
     private View.OnClickListener onMoveActivity;
     private int laodMore = 20;
+
+
 
 
     public RecyclerViewPokemonAdapter(List<Pokemon> data) {

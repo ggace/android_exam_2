@@ -1,4 +1,4 @@
-package com.example.sbs.myapplication;
+package com.example.sbs.myapplication.dto;
 
 import android.util.Log;
 
@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 public class Pokemon {
     private String name;
     private String url;
+
+
 
 
     public int getId(){

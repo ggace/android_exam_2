@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class Todo {
     private int id;
-    private String title = "hello world";
+    private String title;
 }

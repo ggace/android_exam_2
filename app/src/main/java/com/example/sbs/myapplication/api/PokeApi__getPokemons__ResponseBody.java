@@ -1,6 +1,6 @@
 package com.example.sbs.myapplication.api;
 
-import com.example.sbs.myapplication.Pokemon;
+import com.example.sbs.myapplication.dto.Pokemon;
 
 import java.util.List;
 

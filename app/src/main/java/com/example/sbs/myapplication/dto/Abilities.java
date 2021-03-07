@@ -1,4 +1,6 @@
-package com.example.sbs.myapplication;
+package com.example.sbs.myapplication.dto;
+
+import com.example.sbs.myapplication.dto.Ability;
 
 import java.util.List;
 
